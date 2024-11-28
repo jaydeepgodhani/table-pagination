@@ -8,13 +8,13 @@ function App() {
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
-  // Set below stat variable using radio button / text field for more customization
+
   const [pagination, setPagination] = useState(true);
   const [perPage, setPerPage] = useState(5);
 
   useEffect(() => {
-    setLoading(true);
     if (data === null) {
+      setLoading(true);
       fetch(URL)
           .then(response => response.json())
           .then(data => {
@@ -31,7 +31,6 @@ function App() {
   }, []);
 
   const onChecked = (e) => {
-    console.log("here", e.target.checked);
     if(e.target.checked) {
       setPagination(true);
     } else {
@@ -39,15 +38,24 @@ function App() {
     }
   }
 
+  const onSelect = (e) => {
+    setPerPage(e.target.value);
+  }
+
   return (
       <>
         <div className={'centerDiv'}>
           <h2>{'SaaS Labs Assignment By Jaydeep'}</h2>
-          {loading && <p>{'let this load for a while'}</p>}
+          {loading && <p>{'Let this load for a while...'}</p>}
           {data && data.length > 0 && <>
             <div className={'flexDiv'}>
               <div>{'pagination'}<input type={'checkbox'} onChange={onChecked} checked={pagination}/></div>
-              {pagination && <div>{'show items'}</div>}
+              {pagination && <div><select onChange={onSelect}>
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={25}>25</option>
+                <option value={50}>50</option>
+              </select>{' items per page'}</div>}
               {!pagination && <div>{'showing all items'}</div>}
             </div>
             <Table className={'fullWidth'} data={data} pagination={pagination} perPage={perPage} />
