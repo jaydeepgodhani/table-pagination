@@ -13,7 +13,7 @@ const Pagination = ({currentPage, setCurrentPage, pageCount}) => {
   return (
       <div className={'marginDiv'}>
       <button onClick={prevPage}>prev</button>
-        {currentPage}
+        <span className={'pageNumber'}>{currentPage}</span>
       <button onClick={nextPage}>next</button>
   </div>)
 }

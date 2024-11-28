@@ -30,12 +30,26 @@ function App() {
     }
   }, []);
 
+  const onChecked = (e) => {
+    console.log("here", e.target.checked);
+    if(e.target.checked) {
+      setPagination(true);
+    } else {
+      setPagination(false);
+    }
+  }
+
   return (
       <>
         <div className={'centerDiv'}>
           <h2>{'SaaS Labs Assignment By Jaydeep'}</h2>
           {loading && <p>{'let this load for a while'}</p>}
           {data && data.length > 0 && <>
+            <div className={'flexDiv'}>
+              <div>{'pagination'}<input type={'checkbox'} onChange={onChecked} checked={pagination}/></div>
+              {pagination && <div>{'show items'}</div>}
+              {!pagination && <div>{'showing all items'}</div>}
+            </div>
             <Table className={'fullWidth'} data={data} pagination={pagination} perPage={perPage} />
           </>}
           {error && <p>{error}</p>}

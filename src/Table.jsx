@@ -18,6 +18,7 @@ const Table = ({data, pagination, perPage=5}) => {
   }
 
   return (<div className={'centerDiv'}>
+
     <table>
       <thead>
         <tr>

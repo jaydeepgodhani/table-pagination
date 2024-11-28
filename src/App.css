@@ -53,6 +53,17 @@ tr:nth-child(even) {background-color: #1a1a1a;}
 }
 
 button {
-    margin-right: 2em;
-    margin-left: 2em;
+    padding-right: 2em;
+    padding-left: 2em;
+}
+
+.pageNumber {
+    padding-right: 2em;
+    padding-left: 2em;
+}
+
+.flexDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
